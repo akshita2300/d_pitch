@@ -1,0 +1,1208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Duovarsity Pitch Deck</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+
+        .slide {
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: center;
+            padding: 20px;
+            page-break-after: always;
+            position: relative;
+            overflow-y: auto;
+            overflow-x: hidden;
+        }
+
+        .slide::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(255, 255, 255, 0.95);
+            z-index: -1;
+        }
+
+        .slide-number {
+            position: absolute;
+            top: 30px;
+            right: 30px;
+            background: #667eea;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 14px;
+        }
+
+        h1 {
+            font-size: 2.8rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            text-align: center;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        h2 {
+            font-size: 2rem;
+            font-weight: 600;
+            margin-bottom: 25px;
+            text-align: center;
+            color: #2c3e50;
+        }
+
+        h3 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: #667eea;
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            color: #666;
+            text-align: center;
+            margin-bottom: 15px;
+        }
+
+        .presenter-info {
+            font-size: 1.2rem;
+            color: #888;
+            text-align: center;
+            margin-top: 40px;
+            font-style: italic;
+        }
+
+        .content {
+            max-width: 1200px;
+            width: 100%;
+            text-align: left;
+            position: relative;
+            z-index: 10;
+            margin-top: 20px;
+        }
+
+        .content-center {
+            text-align: center;
+        }
+
+        .problem-points {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            margin-top: 25px;
+        }
+
+        .problem-item {
+            background: white;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+            border-left: 5px solid #e74c3c;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+        }
+
+        .problem-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+        }
+
+        .problem-item::before {
+            content: '⚠️';
+            position: absolute;
+            top: -15px;
+            right: -15px;
+            background: #e74c3c;
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+        }
+
+        .problem-item h4 {
+            color: #e74c3c;
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+        }
+
+        .solution-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 25px;
+            margin-top: 25px;
+        }
+
+        .solution-section {
+            background: white;
+            padding: 25px;
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+            border-top: 4px solid #667eea;
+        }
+
+        .solution-section:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+        }
+
+        .solution-section::before {
+            content: '✨';
+            position: absolute;
+            top: -15px;
+            right: -15px;
+            background: #667eea;
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+        }
+
+        .solution-section h4 {
+            color: #667eea;
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .feature-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .feature-list li {
+            padding: 8px 0;
+            border-bottom: 1px solid #eee;
+            position: relative;
+            padding-left: 25px;
+            font-size: 0.95rem;
+        }
+
+        .feature-list li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #27ae60;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        .feature-list li:last-child {
+            border-bottom: none;
+        }
+
+        .pedagogy-flow {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 20px;
+            margin-top: 25px;
+        }
+
+        .flow-step {
+            background: white;
+            padding: 20px;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+            position: relative;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 2px solid #f8f9fa;
+        }
+
+        .flow-step:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+            border-color: #667eea;
+        }
+
+        .flow-step::after {
+            content: '→';
+            position: absolute;
+            right: -15px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 2rem;
+            color: #667eea;
+        }
+
+        .flow-step:last-child::after {
+            display: none;
+        }
+
+        .flow-number {
+            background: #667eea;
+            color: white;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 10px;
+            font-weight: bold;
+            font-size: 0.9rem;
+        }
+
+        .flow-step h4 {
+            font-size: 1.1rem;
+            margin-bottom: 8px;
+            color: #667eea;
+        }
+
+        .flow-step p {
+            font-size: 0.9rem;
+            line-height: 1.4;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .stat-item {
+            background: white;
+            padding: 35px;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+            border-top: 4px solid #27ae60;
+        }
+
+        .stat-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+        }
+
+        .stat-item::before {
+            content: '📊';
+            position: absolute;
+            top: -15px;
+            right: -15px;
+            background: #27ae60;
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #667eea;
+            margin-bottom: 10px;
+        }
+
+        .business-model {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            margin-top: 40px;
+        }
+
+        .model-item {
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+            border-top: 4px solid #f39c12;
+        }
+
+        .model-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+        }
+
+        .model-icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            margin-top: 40px;
+        }
+
+        .team-member {
+            background: white;
+            padding: 35px;
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+            border-top: 4px solid #9b59b6;
+        }
+
+        .team-member:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+        }
+
+        .team-member::before {
+            content: '👤';
+            position: absolute;
+            top: -15px;
+            right: -15px;
+            background: #9b59b6;
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+        }
+
+        .member-name {
+            color: #667eea;
+            font-size: 1.4rem;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .member-title {
+            color: #888;
+            font-style: italic;
+            margin-bottom: 15px;
+        }
+
+        .competitive-advantages {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 20px;
+            margin-top: 40px;
+        }
+
+        .advantage-item {
+            background: white;
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+            border-left: 5px solid #27ae60;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+        }
+
+        .advantage-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+        }
+
+        .advantage-item::before {
+            content: '🏆';
+            position: absolute;
+            top: -15px;
+            right: -15px;
+            background: #27ae60;
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+        }
+
+        .advantage-item h4 {
+            color: #27ae60;
+            margin-bottom: 10px;
+        }
+
+        .funding-breakdown {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .funding-item {
+            background: white;
+            padding: 35px;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+            border-top: 4px solid #3498db;
+        }
+
+        .funding-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+        }
+
+        .funding-item::before {
+            content: '💰';
+            position: absolute;
+            top: -15px;
+            right: -15px;
+            background: #3498db;
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+        }
+
+        .funding-percentage {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #667eea;
+            margin-bottom: 10px;
+        }
+
+        .vision-quote {
+            background: white;
+            padding: 50px;
+            border-radius: 25px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+            text-align: center;
+            font-size: 1.4rem;
+            font-style: italic;
+            color: #2c3e50;
+            margin-top: 40px;
+            position: relative;
+            border: 3px solid #667eea;
+        }
+
+        .vision-quote::before {
+            content: '🎯';
+            position: absolute;
+            top: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #667eea;
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+        }
+
+        .tagline {
+            font-size: 2rem;
+            font-weight: bold;
+            text-align: center;
+            margin-top: 40px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-box {
+            background: white;
+            padding: 20px;
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+            margin-top: 20px;
+            border: 3px solid #667eea;
+        }
+
+        .page-divider {
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            margin: 20px 0;
+            border-radius: 2px;
+        }
+
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            margin-top: 25px;
+        }
+
+        .benefit-card {
+            background: white;
+            padding: 20px;
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+            border-top: 4px solid #667eea;
+        }
+
+        .benefit-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+        }
+
+        .benefit-card.teachers {
+            border-top-color: #e74c3c;
+        }
+
+        .benefit-card.schools {
+            border-top-color: #f39c12;
+        }
+
+        .benefit-card.parents {
+            border-top-color: #27ae60;
+        }
+
+        .benefit-card::before {
+            position: absolute;
+            top: -15px;
+            right: -15px;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            color: white;
+        }
+
+        .benefit-card.teachers::before {
+            content: '👩‍🏫';
+            background: #e74c3c;
+        }
+
+        .benefit-card.schools::before {
+            content: '🏫';
+            background: #f39c12;
+        }
+
+        .benefit-card.parents::before {
+            content: '👨‍👩‍👧‍👦';
+            background: #27ae60;
+        }
+
+        .features-detailed {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            margin-top: 25px;
+        }
+
+        .feature-detailed {
+            background: white;
+            padding: 20px;
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+            position: relative;
+        }
+
+        .feature-icon {
+            font-size: 2rem;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        .how-it-works-steps {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            margin-top: 25px;
+        }
+
+        .step-detailed {
+            background: white;
+            padding: 20px;
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+            position: relative;
+            border-left: 5px solid #667eea;
+        }
+
+        .step-detailed p {
+            font-size: 0.9rem;
+            margin-bottom: 8px;
+        }
+
+        .step-detailed h3 {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+        }
+
+        .step-number {
+            background: #667eea;
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 15px;
+            font-weight: bold;
+            font-size: 1rem;
+        }
+
+        @media print {
+            .slide {
+                page-break-after: always;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .slide {
+                padding: 30px;
+            }
+            
+            h1 {
+                font-size: 2.5rem;
+            }
+            
+            h2 {
+                font-size: 2rem;
+            }
+            
+            .solution-grid,
+            .business-model,
+            .team-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .funding-breakdown {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Slide 1: Title -->
+    <div class="slide">
+        <div class="slide-number">1</div>
+        <div class="content content-center">
+            <h1>Duovarsity Pitch Deck</h1>
+            <div class="subtitle">The Future of Personalized Education</div>
+            <h2>A New Era for Education</h2>
+            <h3>Duovarsity</h3>
+            <div class="hero-box">
+                <div class="subtitle">Enterprise AI Education Platform</div>
+                <div class="subtitle">Transforming Learning for Every Individual and Institution</div>
+            </div>
+            
+            <div class="page-divider"></div>
+        </div>
+    </div>
+
+    <!-- Slide 2: The Problem -->
+    <div class="slide">
+        <div class="slide-number">2</div>
+        <div class="content">
+            <h2>The Problem: The One-Size-Fits-All Model</h2>
+            <p style="font-size: 1.1rem; margin-bottom: 20px; text-align: center;">The one-size-fits-all model of education is failing millions of learners across India—from students in K-12 to professionals seeking new skills. With over 260 million students in the Indian education system, this outdated approach leads to:</p>
+            
+            <div style="background: white; padding: 20px; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); margin-bottom: 20px; text-align: center;">
+                <h3 style="color: #e74c3c; margin-bottom: 10px; font-size: 1.3rem;">Critical Statistics</h3>
+                <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; font-size: 0.9rem;">
+                    <div><strong>68%</strong><br><small>of students struggle with personalized learning needs</small></div>
+                    <div><strong>40%</strong><br><small>teacher time spent on administrative tasks</small></div>
+                    <div><strong>₹2.8L Cr</strong><br><small>annual learning loss due to inefficient education</small></div>
+                </div>
+            </div>
+            
+            <div class="problem-points">
+                <div class="problem-item">
+                    <h4>Inefficient Learning</h4>
+                    <p>Students are either left behind or bored, leading to disengagement and underperformance.</p>
+                </div>
+                
+                <div class="problem-item">
+                    <h4>Teacher Burnout</h4>
+                    <p>Educators are overwhelmed by large class sizes and administrative burdens, with no time for personalized support.</p>
+                </div>
+                
+                <div class="problem-item">
+                    <h4>Aspiration Gap</h4>
+                    <p>The system fails to equip a young, ambitious population with the skills needed for a competitive, modern workforce.</p>
+                </div>
+            </div>
+            
+            <p style="font-size: 1.3rem; text-align: center; margin-top: 40px; font-weight: bold; color: #e74c3c;">The result is a learning landscape defined by missed potential and fragmented solutions.</p>
+            
+            <div class="page-divider"></div>
+        </div>
+    </div>
+
+    <!-- Slide 3: The Solution -->
+    <div class="slide">
+        <div class="slide-number">3</div>
+        <div class="content">
+            <h2>The Solution: AI-Powered, Personalized Learning</h2>
+            <p style="font-size: 1.1rem; margin-bottom: 20px; text-align: center;">Duovarsity is an AI-powered education platform that simplifies personalized learning for every student and teacher. We leverage a proprietary AI engine to create dynamic, adaptive learning paths that cater to the individual needs, pace, and style of each learner.</p>
+            
+            <div class="solution-grid">
+                <div class="solution-section">
+                    <h4>For All Learners<br>(Individual, K-12, College, Professional)</h4>
+                    <ul class="feature-list">
+                        <li><strong>Personalized Learning Paths:</strong> AI identifies a learner's strengths and weaknesses and delivers tailored content and assignments.</li>
+                        <li><strong>Interactive Modules:</strong> Engaging, gamified content keeps learners motivated and on track.</li>
+                        <li><strong>Real-time Feedback:</strong> Instant, constructive feedback helps learners correct mistakes and master concepts.</li>
+                    </ul>
+                </div>
+                
+                <div class="solution-section">
+                    <h4>For Schools & Colleges</h4>
+                    <ul class="feature-list">
+                        <li><strong>Actionable Analytics:</strong> Teachers receive real-time, data-driven insights to identify at-risk students and focus on areas needing intervention.</li>
+                        <li><strong>Automated Administrative Tasks:</strong> Duovarsity automates grading and content curation, freeing up teachers' time to do what they do best: teach.</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="page-divider"></div>
+        </div>
+    </div>
+
+    <!-- Slide 4: Detailed Benefits for All Stakeholders -->
+    <div class="slide">
+        <div class="slide-number">4</div>
+        <div class="content">
+            <h2>Comprehensive Benefits for All Stakeholders</h2>
+            <p style="font-size: 1.1rem; margin-bottom: 20px; text-align: center;">Duovarsity delivers targeted value to every member of the educational ecosystem</p>
+            
+            <div class="benefits-grid">
+                <div class="benefit-card teachers">
+                    <h3>For Teachers</h3>
+                    <ul class="feature-list">
+                        <li><strong>Reduced Workload:</strong> Automated grading and assignment creation saves 5+ hours per week</li>
+                        <li><strong>Data-Driven Insights:</strong> Real-time analytics show exactly which students need help and where</li>
+                        <li><strong>Personalized Teaching:</strong> AI suggests targeted interventions for individual students</li>
+                        <li><strong>Professional Development:</strong> Built-in coaching tools help improve teaching effectiveness</li>
+                        <li><strong>Parent Communication:</strong> Automated progress reports and parent engagement tools</li>
+                        <li><strong>Curriculum Support:</strong> AI-generated lesson plans aligned with learning objectives</li>
+                    </ul>
+                </div>
+                
+                <div class="benefit-card schools">
+                    <h3>For Schools</h3>
+                    <ul class="feature-list">
+                        <li><strong>Improved Outcomes:</strong> 25% average improvement in student performance metrics</li>
+                        <li><strong>Administrative Efficiency:</strong> Streamlined reporting and compliance tracking</li>
+                        <li><strong>Resource Optimization:</strong> Data-driven decisions on teacher allocation and support</li>
+                        <li><strong>Competitive Advantage:</strong> Modern, tech-forward reputation attracts quality families</li>
+                        <li><strong>Cost Savings:</strong> Reduced need for additional tutoring and remedial programs</li>
+                        <li><strong>Scalability:</strong> Consistent quality education across multiple campuses</li>
+                    </ul>
+                </div>
+                
+                <div class="benefit-card parents">
+                    <h3>For Parents</h3>
+                    <ul class="feature-list">
+                        <li><strong>Transparency:</strong> Real-time visibility into child's learning progress and challenges</li>
+                        <li><strong>Home Support:</strong> Personalized homework assistance and learning activities</li>
+                        <li><strong>Progress Tracking:</strong> Detailed reports showing skill development over time</li>
+                        <li><strong>Early Intervention:</strong> Immediate alerts when child struggles with concepts</li>
+                        <li><strong>Engagement Tools:</strong> Fun, gamified learning experiences for home practice</li>
+                        <li><strong>Communication:</strong> Direct connection with teachers through integrated messaging</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="page-divider"></div>
+        </div>
+    </div>
+
+    <!-- Slide 5: Detailed Features & How It Works -->
+    <div class="slide">
+        <div class="slide-number">5</div>
+        <div class="content">
+            <h2>Detailed Features & How It Works</h2>
+            <p style="font-size: 1.1rem; margin-bottom: 20px; text-align: center;">Deep dive into our AI-powered learning ecosystem and technical capabilities</p>
+            
+            <div class="features-detailed">
+                <div class="feature-detailed">
+                    <span class="feature-icon">🧠</span>
+                    <h3>AI Learning Engine</h3>
+                    <ul class="feature-list">
+                        <li><strong>Adaptive Algorithms:</strong> Machine learning models that adjust difficulty in real-time</li>
+                        <li><strong>Learning Style Detection:</strong> Visual, auditory, kinesthetic preference identification</li>
+                        <li><strong>Knowledge Gap Analysis:</strong> Precise identification of conceptual weaknesses</li>
+                        <li><strong>Predictive Analytics:</strong> Early warning system for academic struggles</li>
+                    </ul>
+                </div>
+                
+                <div class="feature-detailed">
+                    <span class="feature-icon">📊</span>
+                    <h3>Advanced Analytics Dashboard</h3>
+                    <ul class="feature-list">
+                        <li><strong>Real-time Metrics:</strong> Live performance tracking across all subjects</li>
+                        <li><strong>Comparative Analysis:</strong> Peer benchmarking and progress comparisons</li>
+                        <li><strong>Intervention Recommendations:</strong> AI-suggested teaching strategies</li>
+                        <li><strong>Outcome Prediction:</strong> Forecasting student performance trends</li>
+                    </ul>
+                </div>
+                
+                <div class="feature-detailed">
+                    <span class="feature-icon">🎮</span>
+                    <h3>Interactive Learning Modules</h3>
+                    <ul class="feature-list">
+                        <li><strong>Gamification:</strong> Points, badges, and leaderboards for motivation</li>
+                        <li><strong>Multimedia Content:</strong> Videos, simulations, and interactive exercises</li>
+                        <li><strong>Collaborative Tools:</strong> Peer-to-peer learning and group projects</li>
+                        <li><strong>Assessment Variety:</strong> Quizzes, projects, and practical applications</li>
+                    </ul>
+                </div>
+                
+                <div class="feature-detailed">
+                    <span class="feature-icon">🔄</span>
+                    <h3>Continuous Feedback Loop</h3>
+                    <ul class="feature-list">
+                        <li><strong>Instant Corrections:</strong> Immediate feedback on mistakes and misconceptions</li>
+                        <li><strong>Personalized Hints:</strong> Contextual guidance without giving away answers</li>
+                        <li><strong>Progress Celebrations:</strong> Recognition of achievements and milestones</li>
+                        <li><strong>Adaptive Pacing:</strong> Content delivery adjusted to individual learning speed</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="page-divider"></div>
+        </div>
+    </div>
+
+    <!-- Slide 6: How It Works - Technical Implementation -->
+    <div class="slide">
+        <div class="slide-number">6</div>
+        <div class="content">
+            <h2>How It Works: Technical Implementation</h2>
+            <p style="font-size: 1.1rem; margin-bottom: 20px; text-align: center;">Step-by-step breakdown of our AI-powered personalized learning process</p>
+            
+            <div class="how-it-works-steps">
+                <div class="step-detailed">
+                    <div class="step-number">1</div>
+                    <h3>Initial Assessment & Profiling</h3>
+                    <p><strong>What happens:</strong> New students complete comprehensive diagnostic assessments covering knowledge level, learning preferences, and cognitive patterns.</p>
+                    <p><strong>Technology:</strong> Natural Language Processing analyzes responses, Computer Vision tracks engagement patterns, and Machine Learning creates initial learner profiles.</p>
+                    <p><strong>Outcome:</strong> Personalized learning pathway with difficulty calibration and preferred content formats.</p>
+                </div>
+                
+                <div class="step-detailed">
+                    <div class="step-number">2</div>
+                    <h3>Dynamic Content Delivery</h3>
+                    <p><strong>What happens:</strong> AI selects and sequences learning materials based on student profile, current knowledge state, and learning objectives.</p>
+                    <p><strong>Technology:</strong> Recommendation algorithms, content tagging system, and adaptive sequencing engine.</p>
+                    <p><strong>Outcome:</strong> Optimally challenging content delivered in preferred format (visual, text, interactive, etc.).</p>
+                </div>
+                
+                <div class="step-detailed">
+                    <div class="step-number">3</div>
+                    <h3>Real-time Performance Analysis</h3>
+                    <p><strong>What happens:</strong> Every interaction (clicks, time spent, answers, mistakes) is captured and analyzed for learning patterns.</p>
+                    <p><strong>Technology:</strong> Event tracking, behavioral analytics, and pattern recognition algorithms.</p>
+                    <p><strong>Outcome:</strong> Continuous profile updates and immediate identification of learning difficulties.</p>
+                </div>
+                
+                <div class="step-detailed">
+                    <div class="step-number">4</div>
+                    <h3>Intelligent Intervention System</h3>
+                    <p><strong>What happens:</strong> When struggles are detected, AI immediately provides targeted support through hints, alternative explanations, or simplified examples.</p>
+                    <p><strong>Technology:</strong> Decision trees, contextual help algorithms, and adaptive content generation.</p>
+                    <p><strong>Outcome:</strong> Prevention of knowledge gaps and maintained learning momentum.</p>
+                </div>
+                
+                <div class="step-detailed">
+                    <div class="step-number">5</div>
+                    <h3>Teacher Dashboard Integration</h3>
+                    <p><strong>What happens:</strong> All student data is synthesized into actionable insights for teachers, highlighting students needing attention and successful strategies.</p>
+                    <p><strong>Technology:</strong> Data visualization, statistical analysis, and automated reporting systems.</p>
+                    <p><strong>Outcome:</strong> Teachers can provide targeted human support where AI guidance isn't sufficient.</p>
+                </div>
+                
+                <div class="step-detailed">
+                    <div class="step-number">6</div>
+                    <h3>Continuous Learning & Optimization</h3>
+                    <p><strong>What happens:</strong> System learns from all interactions across all users to improve recommendations and identify new learning patterns.</p>
+                    <p><strong>Technology:</strong> Federated learning, A/B testing, and continuous model training.</p>
+                    <p><strong>Outcome:</strong> Platform becomes more effective over time, benefiting all users from collective learning insights.</p>
+                </div>
+            </div>
+            
+            <div class="page-divider"></div>
+        </div>
+    </div>
+
+    <!-- Slide 7: The Pedagogy - Learning Science Framework -->
+    <div class="slide">
+        <div class="slide-number">7</div>
+        <div class="content">
+            <h2>The Learning Science Framework: Our Pedagogical Foundation</h2>
+            <p style="font-size: 1.1rem; margin-bottom: 20px; text-align: center;">Built on proven educational research and cognitive science principles, our approach ensures deep learning and long-term retention.</p>
+            
+            <h3 style="text-align: center; margin-bottom: 25px;">Core Learning Principles</h3>
+            
+            <div class="pedagogy-flow">
+                <div class="flow-step">
+                    <div class="flow-number">1</div>
+                    <h4>Spaced Repetition</h4>
+                    <p>Content is revisited at scientifically-optimized intervals to move knowledge from short-term to long-term memory, ensuring lasting retention.</p>
+                </div>
+                
+                <div class="flow-step">
+                    <div class="flow-number">2</div>
+                    <h4>Active Learning</h4>
+                    <p>Students engage through problem-solving, discussions, and hands-on activities rather than passive consumption of information.</p>
+                </div>
+                
+                <div class="flow-step">
+                    <div class="flow-number">3</div>
+                    <h4>Cognitive Load Theory</h4>
+                    <p>Information is presented in digestible chunks, avoiding cognitive overload while building complex understanding progressively.</p>
+                </div>
+                
+                <div class="flow-step">
+                    <div class="flow-number">4</div>
+                    <h4>Mastery-Based Progression</h4>
+                    <p>Students must demonstrate competency before advancing, ensuring solid foundational knowledge at each level.</p>
+                </div>
+                
+                <div class="flow-step">
+                    <div class="flow-number">5</div>
+                    <h4>Metacognitive Awareness</h4>
+                    <p>Students develop self-awareness about their learning process, becoming more effective independent learners over time.</p>
+                </div>
+            </div>
+            
+            <p style="font-size: 1.2rem; text-align: center; margin-top: 40px; font-weight: bold; color: #667eea;">This creates a continuous feedback loop that ensures every learner is challenged appropriately and every teacher is empowered with data, not burdened by it.</p>
+            
+            <div class="page-divider"></div>
+        </div>
+    </div>
+
+    <!-- Slide 8: Market Opportunity -->
+    <div class="slide">
+        <div class="slide-number">8</div>
+        <div class="content">
+            <h2>Market Opportunity: A Growing Digital Revolution and an Unmet Need</h2>
+            <p style="font-size: 1.2rem; margin-bottom: 30px; text-align: center;">The education technology market in India is at a tipping point, with a significant gap for a truly end-to-end AI-powered platform.</p>
+            
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <div class="stat-number">$7.5B → $29B</div>
+                    <h4>Massive & Rapidly Growing Market</h4>
+                    <p>India's ed-tech market is projected to grow from $7.5 billion in 2024 to $29 billion by 2030.</p>
+                </div>
+                
+                <div class="stat-item">
+                    <div class="stat-number">$33B</div>
+                    <h4>Unaddressed Demand for Personalization</h4>
+                    <p>While there are content platforms, there are no comprehensive tools that provide this level of personalized, adaptive learning and data-driven insights for teachers. The global personalized learning market is expected to reach over $33 billion by 2033.</p>
+                </div>
+                
+                <div class="stat-item">
+                    <div class="stat-number">📈</div>
+                    <h4>Policy & Infrastructure Tailwinds</h4>
+                    <p>Rising internet penetration, smartphone adoption, and government initiatives are accelerating the shift towards digital education.</p>
+                </div>
+            </div>
+            
+            <p style="font-size: 1.3rem; text-align: center; margin-top: 40px; font-weight: bold; color: #667eea;">We are entering this market at a time when macro factors and technology trends are perfectly aligned.</p>
+            
+            <div class="page-divider"></div>
+        </div>
+    </div>
+
+    <!-- Slide 9: Business Model -->
+    <div class="slide">
+        <div class="slide-number">9</div>
+        <div class="content">
+            <h2>Business Model: B2B for Institutions & B2C for Individuals</h2>
+            <p style="font-size: 1.2rem; margin-bottom: 30px; text-align: center;">Duovarsity operates on a dual-pronged business model for maximum reach and revenue.</p>
+            
+            <div class="business-model">
+                <div class="model-item">
+                    <div class="model-icon">🏢</div>
+                    <h3>B2B for Institutions</h3>
+                    <p>We offer a tiered, subscription-based licensing model for schools, colleges, and universities. This includes access to the full platform, teacher analytics, and dedicated support.</p>
+                </div>
+                
+                <div class="model-item">
+                    <div class="model-icon">👤</div>
+                    <h3>B2C for Learners</h3>
+                    <p>We provide a direct-to-consumer premium subscription for individual learners seeking personalized tutoring and skill enhancement. This model allows us to acquire users quickly and build a strong brand presence.</p>
+                </div>
+            </div>
+            
+            <div class="page-divider"></div>
+        </div>
+    </div>
+
+    <!-- Slide 10: Our Team -->
+    <div class="slide">
+        <div class="slide-number">10</div>
+        <div class="content">
+            <h2>Our Team: Education, Data, and Execution</h2>
+            <p style="font-size: 1.2rem; margin-bottom: 30px; text-align: center;">Our founders bring a unique blend of skills that uniquely positions us to win in this market.</p>
+            
+            <div class="team-grid">
+                <div class="team-member">
+                    <div class="member-name">Akshita Bhardwaj</div>
+                    <div class="member-title">Founder</div>
+                    <p>A data scientist from Delhivery and an ed-tech enthusiast, Akshita was inspired by her time at the University of Aberdeen, where she encountered advanced tools, especially for neurodivergent learners. This experience fueled her passion to leverage AI and adapt these global innovations for the specific needs of the Indian education system.</p>
+                </div>
+                
+                <div class="team-member">
+                    <div class="member-name">Ankush Tagore</div>
+                    <div class="member-title">Founder</div>
+                    <p>With over six years of financial and product management experience at Shapoorji Pallonji and as the founder of SocyU, Ankush is an expert in scaling digital solutions. His background provides the technical acumen and execution capability required to build a robust and scalable platform.</p>
+                </div>
+            </div>
+            
+            <div class="page-divider"></div>
+        </div>
+    </div>
+
+    <!-- Slide 11: Competitive Advantage -->
+    <div class="slide">
+        <div class="slide-number">11</div>
+        <div class="content">
+            <h2>Competitive Advantage</h2>
+            <p style="font-size: 1.2rem; margin-bottom: 30px; text-align: center;">While competitors exist, our core differentiators are:</p>
+            
+            <div class="competitive-advantages">
+                <div class="advantage-item">
+                    <h4>AI-Native Pedagogy</h4>
+                    <p>We are not an existing content platform with a bolted-on AI. Our platform is built from the ground up as an AI-driven personalized learning engine with a unique, mastery-based pedagogical approach.</p>
+                </div>
+                
+                <div class="advantage-item">
+                    <h4>Dual Focus</h4>
+                    <p>We empower both students and teachers, making our solution a true partnership rather than a replacement for educators.</p>
+                </div>
+                
+                <div class="advantage-item">
+                    <h4>Tailored for the Indian Market</h4>
+                    <p>Our content, language, and pedagogical approach are specifically designed to address the nuances and aspirations of learners across India.</p>
+                </div>
+            </div>
+            
+            <div class="page-divider"></div>
+        </div>
+    </div>
+
+    <!-- Slide 12: The Ask & Use of Funds -->
+    <div class="slide">
+        <div class="slide-number">12</div>
+        <div class="content">
+            <h2>The Ask & Use of Funds</h2>
+            <div style="text-align: center; margin-bottom: 40px;">
+                <div class="stat-number" style="font-size: 3rem; margin-bottom: 20px;">$200K</div>
+                <p style="font-size: 1.3rem;"><strong>Ask:</strong> We are raising a $200K seed round to accelerate our growth.</p>
+            </div>
+            
+            <h3 style="text-align: center; margin-bottom: 30px;">Use of Funds:</h3>
+            
+            <div class="funding-breakdown">
+                <div class="funding-item">
+                    <div class="funding-percentage">50%</div>
+                    <h4>Product Development</h4>
+                    <p>Expanding our AI capabilities, developing new interactive modules, and enhancing the teacher dashboard.</p>
+                </div>
+                
+                <div class="funding-item">
+                    <div class="funding-percentage">30%</div>
+                    <h4>Sales & Marketing</h4>
+                    <p>Scaling our go-to-market strategy to secure new institutional partnerships and grow our direct-to-consumer user base.</p>
+                </div>
+                
+                <div class="funding-item">
+                    <div class="funding-percentage">20%</div>
+                    <h4>Talent Acquisition</h4>
+                    <p>Hiring a world-class engineering team to support our rapid growth.</p>
+                </div>
+            </div>
+            
+            <div class="page-divider"></div>
+        </div>
+    </div>
+
+    <!-- Slide 13: Our Vision -->
+    <div class="slide">
+        <div class="slide-number">13</div>
+        <div class="content content-center">
+            <h2>Our Vision</h2>
+            
+            <div class="vision-quote">
+                To become the leading AI-powered education platform in India, creating a future where every learner has access to a truly personalized education, unlocking their full potential and transforming the nation's workforce.
+            </div>
+            
+            <div class="tagline">
+                Duovarsity: Personalized Learning. Simplified.
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Add smooth scrolling between slides
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'ArrowRight' || e.key === ' ') {
+                if (currentSlide < slides.length - 1) {
+                    currentSlide++;
+                    slides[currentSlide].scrollIntoView({ behavior: 'smooth' });
+                }
+            } else if (e.key === 'ArrowLeft') {
+                if (currentSlide > 0) {
+                    currentSlide--;
+                    slides[currentSlide].scrollIntoView({ behavior: 'smooth' });
+                }
+            }
+        });
+
+        // Print styles for PDF generation
+        window.addEventListener('beforeprint', function() {
+            document.body.style.background = 'white';
+        });
+    </script>
+</body>
+</html>
