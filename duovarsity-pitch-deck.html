@@ -23,13 +23,13 @@
             height: 100vh;
             display: flex;
             flex-direction: column;
-            justify-content: flex-start;
+            justify-content: center;
             align-items: center;
-            padding: 20px;
+            padding: 10px;
             page-break-after: always;
             position: relative;
-            overflow-y: auto;
-            overflow-x: hidden;
+            overflow: hidden;
+            box-sizing: border-box;
         }
 
         .slide::before {
@@ -56,9 +56,9 @@
         }
 
         h1 {
-            font-size: 2.8rem;
+            font-size: 2.2rem;
             font-weight: 700;
-            margin-bottom: 20px;
+            margin-bottom: 10px;
             text-align: center;
             background: linear-gradient(135deg, #667eea, #764ba2);
             -webkit-background-clip: text;
@@ -67,25 +67,25 @@
         }
 
         h2 {
-            font-size: 2rem;
+            font-size: 1.6rem;
             font-weight: 600;
-            margin-bottom: 25px;
+            margin-bottom: 15px;
             text-align: center;
             color: #2c3e50;
         }
 
         h3 {
-            font-size: 1.5rem;
+            font-size: 1.2rem;
             font-weight: 600;
-            margin-bottom: 15px;
+            margin-bottom: 10px;
             color: #667eea;
         }
 
         .subtitle {
-            font-size: 1.2rem;
+            font-size: 1rem;
             color: #666;
             text-align: center;
-            margin-bottom: 15px;
+            margin-bottom: 8px;
         }
 
         .presenter-info {
@@ -97,12 +97,15 @@
         }
 
         .content {
-            max-width: 1200px;
+            max-width: 95%;
             width: 100%;
             text-align: left;
             position: relative;
             z-index: 10;
-            margin-top: 20px;
+            height: 90%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
         }
 
         .content-center {
@@ -112,15 +115,15 @@
         .problem-points {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 20px;
-            margin-top: 25px;
+            gap: 15px;
+            margin-top: 15px;
         }
 
         .problem-item {
             background: white;
-            padding: 20px;
+            padding: 15px;
             border-radius: 15px;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
             border-left: 5px solid #e74c3c;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
             position: relative;
@@ -149,22 +152,27 @@
 
         .problem-item h4 {
             color: #e74c3c;
-            font-size: 1.2rem;
-            margin-bottom: 10px;
+            font-size: 1rem;
+            margin-bottom: 8px;
+        }
+
+        .problem-item p {
+            font-size: 0.85rem;
+            line-height: 1.3;
         }
 
         .solution-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 25px;
-            margin-top: 25px;
+            gap: 15px;
+            margin-top: 15px;
         }
 
         .solution-section {
             background: white;
-            padding: 25px;
-            border-radius: 20px;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+            padding: 15px;
+            border-radius: 15px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
             position: relative;
             border-top: 4px solid #667eea;
@@ -193,8 +201,8 @@
 
         .solution-section h4 {
             color: #667eea;
-            font-size: 1.2rem;
-            margin-bottom: 15px;
+            font-size: 1rem;
+            margin-bottom: 10px;
             text-align: center;
         }
 
@@ -204,11 +212,12 @@
         }
 
         .feature-list li {
-            padding: 8px 0;
+            padding: 4px 0;
             border-bottom: 1px solid #eee;
             position: relative;
-            padding-left: 25px;
-            font-size: 0.95rem;
+            padding-left: 20px;
+            font-size: 0.8rem;
+            line-height: 1.2;
         }
 
         .feature-list li::before {
@@ -555,24 +564,24 @@
 
         .page-divider {
             width: 100%;
-            height: 3px;
+            height: 2px;
             background: linear-gradient(135deg, #667eea, #764ba2);
-            margin: 20px 0;
+            margin: 10px 0;
             border-radius: 2px;
         }
 
         .benefits-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 20px;
-            margin-top: 25px;
+            gap: 15px;
+            margin-top: 15px;
         }
 
         .benefit-card {
             background: white;
-            padding: 20px;
-            border-radius: 20px;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+            padding: 12px;
+            border-radius: 15px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
             position: relative;
             border-top: 4px solid #667eea;
@@ -627,22 +636,28 @@
         .features-detailed {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
-            gap: 20px;
-            margin-top: 25px;
+            gap: 10px;
+            margin-top: 15px;
         }
 
         .feature-detailed {
             background: white;
-            padding: 20px;
-            border-radius: 20px;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+            padding: 12px;
+            border-radius: 15px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.08);
             position: relative;
         }
 
         .feature-icon {
-            font-size: 2rem;
-            margin-bottom: 10px;
+            font-size: 1.5rem;
+            margin-bottom: 5px;
             display: block;
+        }
+
+        .feature-detailed h3 {
+            font-size: 1rem;
+            margin-bottom: 8px;
+            color: #667eea;
         }
 
         .how-it-works-steps {
@@ -693,25 +708,48 @@
 
         @media (max-width: 768px) {
             .slide {
-                padding: 30px;
+                padding: 15px;
             }
             
             h1 {
-                font-size: 2.5rem;
+                font-size: 2.2rem;
             }
             
             h2 {
-                font-size: 2rem;
+                font-size: 1.8rem;
             }
             
             .solution-grid,
             .business-model,
-            .team-grid {
+            .team-grid,
+            .features-detailed {
+                grid-template-columns: 1fr;
+                gap: 10px;
+            }
+            
+            .funding-breakdown,
+            .problem-points,
+            .benefits-grid {
                 grid-template-columns: 1fr;
             }
             
-            .funding-breakdown {
-                grid-template-columns: 1fr;
+            .feature-detailed {
+                padding: 12px;
+            }
+        }
+
+        @media (max-width: 1200px) and (min-width: 769px) {
+            .features-detailed {
+                gap: 12px;
+            }
+            
+            .feature-detailed {
+                padding: 12px;
+            }
+            
+            .feature-list li {
+                font-size: 0.85rem;
+                padding: 5px 0;
             }
         }
     </style>
@@ -739,7 +777,7 @@
         <div class="slide-number">2</div>
         <div class="content">
             <h2>The Problem: The One-Size-Fits-All Model</h2>
-            <p style="font-size: 1.1rem; margin-bottom: 20px; text-align: center;">The one-size-fits-all model of education is failing millions of learners across India—from students in K-12 to professionals seeking new skills. With over 260 million students in the Indian education system, this outdated approach leads to:</p>
+            <p style="font-size: 0.9rem; margin-bottom: 15px; text-align: center;">The one-size-fits-all model of education is failing millions of learners across India—from students in K-12 to professionals seeking new skills. With over 260 million students in the Indian education system, this outdated approach leads to:</p>
             
             <div style="background: white; padding: 20px; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); margin-bottom: 20px; text-align: center;">
                 <h3 style="color: #e74c3c; margin-bottom: 10px; font-size: 1.3rem;">Critical Statistics</h3>
@@ -778,7 +816,7 @@
         <div class="slide-number">3</div>
         <div class="content">
             <h2>The Solution: AI-Powered, Personalized Learning</h2>
-            <p style="font-size: 1.1rem; margin-bottom: 20px; text-align: center;">Duovarsity is an AI-powered education platform that simplifies personalized learning for every student and teacher. We leverage a proprietary AI engine to create dynamic, adaptive learning paths that cater to the individual needs, pace, and style of each learner.</p>
+            <p style="font-size: 0.9rem; margin-bottom: 15px; text-align: center;">Duovarsity is an AI-powered education platform that simplifies personalized learning for every student and teacher. We leverage a proprietary AI engine to create dynamic, adaptive learning paths that cater to the individual needs, pace, and style of each learner.</p>
             
             <div class="solution-grid">
                 <div class="solution-section">
@@ -808,7 +846,7 @@
         <div class="slide-number">4</div>
         <div class="content">
             <h2>Comprehensive Benefits for All Stakeholders</h2>
-            <p style="font-size: 1.1rem; margin-bottom: 20px; text-align: center;">Duovarsity delivers targeted value to every member of the educational ecosystem</p>
+            <p style="font-size: 0.9rem; margin-bottom: 15px; text-align: center;">Duovarsity delivers targeted value to every member of the educational ecosystem</p>
             
             <div class="benefits-grid">
                 <div class="benefit-card teachers">
@@ -857,7 +895,7 @@
         <div class="slide-number">5</div>
         <div class="content">
             <h2>Detailed Features & How It Works</h2>
-            <p style="font-size: 1.1rem; margin-bottom: 20px; text-align: center;">Deep dive into our AI-powered learning ecosystem and technical capabilities</p>
+            <p style="font-size: 0.9rem; margin-bottom: 12px; text-align: center;">Deep dive into our AI-powered learning ecosystem and technical capabilities</p>
             
             <div class="features-detailed">
                 <div class="feature-detailed">
@@ -914,7 +952,7 @@
         <div class="slide-number">6</div>
         <div class="content">
             <h2>How It Works: Technical Implementation</h2>
-            <p style="font-size: 1.1rem; margin-bottom: 20px; text-align: center;">Step-by-step breakdown of our AI-powered personalized learning process</p>
+            <p style="font-size: 0.9rem; margin-bottom: 15px; text-align: center;">Step-by-step breakdown of our AI-powered personalized learning process</p>
             
             <div class="how-it-works-steps">
                 <div class="step-detailed">
@@ -975,7 +1013,7 @@
         <div class="slide-number">7</div>
         <div class="content">
             <h2>The Learning Science Framework: Our Pedagogical Foundation</h2>
-            <p style="font-size: 1.1rem; margin-bottom: 20px; text-align: center;">Built on proven educational research and cognitive science principles, our approach ensures deep learning and long-term retention.</p>
+            <p style="font-size: 0.9rem; margin-bottom: 15px; text-align: center;">Built on proven educational research and cognitive science principles, our approach ensures deep learning and long-term retention.</p>
             
             <h3 style="text-align: center; margin-bottom: 25px;">Core Learning Principles</h3>
             
